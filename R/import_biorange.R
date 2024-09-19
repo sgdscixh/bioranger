@@ -3,7 +3,7 @@
 #' 导入Python biorange模块
 #'
 #' 此函数尝试使用reticulate包导入Python的biorange模块。
-#' 
+#'
 #' @return 导入的biorange模块
 #' @export
 #' @importFrom reticulate import
@@ -17,9 +17,12 @@
 #' biorange <- import_biorange()
 #' }
 import_biorange <- function() {
-  tryCatch({
-    reticulate::import("biorange", convert = TRUE)
-  }, error = function(e) {
-    stop("无法加载Python模块'biorange'。请确保它已正确安装。")
-  })
+  tryCatch(
+    {
+      reticulate::import("biorange", convert = TRUE)
+    },
+    error = function(e) {
+      stop("无法加载Python模块'biorange'。请确保它已正确安装。")
+    }
+  )
 }

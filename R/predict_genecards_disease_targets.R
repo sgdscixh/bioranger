@@ -9,7 +9,8 @@
 #' @export
 #'
 #' @details
-#' 该函数使用biorange模块的genecards_disease_target函数对输入的疾病查询字符串进行靶点预测。
+#' 该函数使用biorange模块的genecards_disease_target函数
+#' 对输入的疾病查询字符串进行靶点预测。
 #' 结果会被返回为一个数据框。注意：使用此功能需要自行下载GeneCards数据。
 #'
 #' @examples
@@ -17,7 +18,7 @@
 #' genecards_targets <- predict_genecards_disease_targets("癌症")
 #' print(genecards_targets)
 #' }
-predict_genecards_disease_targets <- function(query_string) {
+predict_genecards_disease_targets <- function(query_string) { # nolintr
   biorange <- import_biorange()
   biorange$target_predict$genecards_disease_target(query_string = query_string)
 }

@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @details
-#' 该函数使用biorange模块的stich_inchikey_target函数对输入的InChIKeys进行靶点预测。
+#' 该函数使用biorange模块的stich_inchikey_target函数对InChIKeys进行靶点预测。
 #' 结果会被返回为一个数据框。
 #'
 #' @examples
@@ -18,7 +18,7 @@
 #' stitch_inchikey_targets <- predict_stitch_inchikey_targets(inchikeys)
 #' print(stitch_inchikey_targets)
 #' }
-predict_stitch_inchikey_targets <- function(inchikeys) {
+predict_stitch_inchikey_targets <- function(inchikeys) { # nolintr
   biorange <- import_biorange()
   biorange$target_predict$stich_inchikey_target(inchikeys = inchikeys)
 }

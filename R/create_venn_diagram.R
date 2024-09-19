@@ -2,13 +2,13 @@
 
 #' 绘制venn图，输出交集数据表
 #'
-#' This function generates a Venn diagram using the BioRange package. It takes multiple sets of data
+#' This function generates a Venn diagram using the BioRange package.
 #' and plots their intersections. The output can be saved as a PDF file.
 #'
-#' @param sets A list of character vectors, each representing a set of items to be compared in the Venn diagram.
-#' @param set_names A character vector containing names for each set. Must match the length of `sets`.
+#' @param sets A list of character vectors
+#' @param set_names names for each set. Must match the length of `sets`.
 #' @param title A character string specifying the title of the Venn diagram.
-#' @param output_file A character string specifying the path to the output PDF file.
+#' @param output_file A character string specifying the path to the output file.
 #' @import reticulate
 #' @export
 create_venn_diagram <- function(sets, set_names, title, output_file) {
@@ -29,5 +29,3 @@ create_venn_diagram <- function(sets, set_names, title, output_file) {
   # Generate the Venn diagram
   biorange$venn$vennplot(sets, set_names, title, output_file)
 }
-
-
