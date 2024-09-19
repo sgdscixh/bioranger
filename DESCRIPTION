@@ -9,6 +9,8 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Suggests: 
+    knitr,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Imports: 
@@ -17,3 +19,4 @@ LitrVersionUsed: 0.9.2
 LitrId: 489a1d441b7f488b8c7d7a2effb829cd
 URL: https://github.com/sgdscixh/bioranger
 BugReports: https://github.com/sgdscixh/bioranger/issues
+VignetteBuilder: knitr
