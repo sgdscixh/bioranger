@@ -1,0 +1,20 @@
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/LICENSE-text.html</loc></url>
+<url><loc>/LICENSE.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/reference/create_venn_diagram.html</loc></url>
+<url><loc>/reference/import_biorange.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/predict_chembl_batch_targets.html</loc></url>
+<url><loc>/reference/predict_genecards_disease_targets.html</loc></url>
+<url><loc>/reference/predict_omim_disease_targets.html</loc></url>
+<url><loc>/reference/predict_stitch_inchikey_targets.html</loc></url>
+<url><loc>/reference/predict_tcmsp_batch_targets.html</loc></url>
+<url><loc>/reference/predict_tcmsp_inchikey_targets.html</loc></url>
+<url><loc>/reference/predict_ttd_disease_targets.html</loc></url>
+<url><loc>/reference/run_ppi_analysis.html</loc></url>
+<url><loc>/reference/say_hello.html</loc></url>
+</urlset>
+
