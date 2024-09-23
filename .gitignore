@@ -9,6 +9,6 @@ inst/doc
 /doc/
 /Meta/
 results/
-**/*.logs/
+**/.logs/
 **/*.log
 **/*.build.timestamp

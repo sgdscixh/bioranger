@@ -58,11 +58,11 @@ When \code{output_file} is provided, the plot is saved to the specified file, an
 \examples{
 # Create example data frame with necessary columns
 df <- data.frame(
-    Description = paste0("Term", 1:15),
-    GeneRatio = runif(15, 0.1, 0.3),
-    Count = sample(10:50, 15, replace = TRUE),
-    p.adjust = 10^(-runif(15, 1, 5)),
-    ONTOLOGY = rep(c("Biological Process", "Molecular Function", "Cellular Component"), each = 5)
+  Description = paste0("Term", 1:15),
+  GeneRatio = runif(15, 0.1, 0.3),
+  Count = sample(10:50, 15, replace = TRUE),
+  p.adjust = 10^(-runif(15, 1, 5)),
+  ONTOLOGY = rep(c("Biological Process", "Molecular Function", "Cellular Component"), each = 5)
 )
 # Generate dot plot without saving to file
 p <- enrichment_dotplot(df, topn = 3)

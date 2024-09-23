@@ -252,9 +252,12 @@ dock_diffdock <- function(
     output_dir
   )
 }
+
+unlink("results/dock", recursive = TRUE)
 dock_diffdock(
   protein_path = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70.pdb",
-  ligand_path = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70_ligand.sdf"
+  ligand_path = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70_ligand.sdf",
+  output_dir = "results/dock"
 )
 ```
 
