@@ -19,5 +19,5 @@
 #' }
 predict_omim_disease_targets <- function(phenotypes) {
   biorange <- import_biorange()
-  biorange$target_predict$omim_disease_target(phenotypes = phenotypes)
+  biorange$target_predict$omim_disease_target(diseases = phenotypes)
 }
