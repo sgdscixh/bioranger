@@ -21,3 +21,6 @@ LitrId: 489a1d441b7f488b8c7d7a2effb829cd
 URL: https://github.com/sgdscixh/bioranger
 BugReports: https://github.com/sgdscixh/bioranger/issues
 VignetteBuilder: knitr
+Depends: 
+    R (>= 2.10)
+LazyData: true

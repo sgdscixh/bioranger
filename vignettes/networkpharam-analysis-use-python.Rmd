@@ -1,0 +1,338 @@
+---
+title: "networkpharam-analysis-use-python"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{networkpharam-analysis-use-python}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# 前提条件
+```{r setup}
+library(bioranger)
+# 可选参数：version = "3.10" # 必须要3.10以上，当自动安装的版本小于3.10的时候指定此选项
+# 可选参数：python = "C:/Python312/python.exe" # 可以强制指定python位置
+# linux 上还需注意堆栈限制，打开文件限制
+# reticulate::virtualenv_create(envname = "r-reticulate", python = "/home/liuyan/miniconda3/bin/python")
+# # 检验是否成功
+Sys.setenv("RETICULATE_PYTHON" = "/home/liuyan/.virtualenvs/r-reticulate/bin/python")
+reticulate::use_virtualenv("r-reticulate")
+reticulate::py_config()
+```
+
+```{r}
+# 安装python包
+reticulate::py_install(packages = "biorange", pip = TRUE)
+```
+
+# 使用python包  
+```{r}
+# 导入python包
+biorange <- reticulate::import("biorange")
+```
+
+## venn 
+```{r}
+# 加载biorange包
+# 定义函数
+vennplot <- function(groups, labels, title, filename = NULL, ...) {
+  # 调用biorange$venn$vennplot函数
+  biorange$venn$vennplot(
+    groups,
+    labels,
+    title,
+    filename,
+    ...
+  )
+}
+
+# 示例数据
+TCMSP <- c("A", "B", "C", "D")
+Chembl <- c("B", "C", "E", "F")
+STITCH <- c("C", "D", "E", "G")
+
+# 调用自定义的vennplot函数
+vennplot(
+  list(TCMSP, Chembl, STITCH),
+  c("TCMSP", "Chembl", "STITCH"),
+  "Ingredients_Targets_venn",
+  "Ingredients_Targets_venn.png"
+)
+```
+## ppi 
+```{r}
+# ppi 分析
+ppi_analysis <- function(gene_names, output_dir) {
+  # 假设biorange包中有一个ppi_analysis函数
+  fs::dir_create(output_dir)
+  biorange$ppi$ppi_analysis(
+    gene_names,
+    output_dir
+  )
+}
+gene_list <- gene_list_399
+output_dir <- "./results/ppi"
+ppi_analysis(gene_list, output_dir)
+```
+
+## 网络绘图
+```{r}
+### 自定义绘图
+plot_network_custom <- function(
+    nodes_df, types_df,
+    num_rows = 7,
+    num_cols = 12,
+    output_file = "custom_layout",
+    output_dir = "./results/ppi/custom_layout",
+    figsize = c(14, 10)) {
+  biorange$ppi$plot_network_custom(
+    nodes_df = nodes_df,
+    types_df = types_df,
+    num_rows = num_rows,
+    num_cols = num_cols,
+    output_file = output_file,
+    output_dir = output_dir,
+    figsize = figsize
+  )
+}
+
+
+plot_network_custom(
+  node_data_339,
+  type_data_146,
+  num_rows = 7,
+  num_cols = 12,
+  output_file = "custom_layout",
+  output_dir = "./results/ppi/custom_layout",
+  figsize = c(14, 10)
+)
+```
+### 圆形布局
+```{r}
+plot_network_circle <- function(
+    nodes_df,
+    types_df,
+    target_layers = NULL,
+    layer_radii = NULL,
+    output_file = "circle_layout",
+    output_dir = "./results/ppi/circle_layout",
+    figsize = c(12, 12),
+    dpi = 900) {
+  # 假设biorange包中有一个plot_network_circle函数
+  biorange$ppi$plot_network_circle(
+    nodes_df = nodes_df,
+    types_df = types_df,
+    target_layers = as.integer(target_layers),
+    layer_radii = layer_radii,
+    output_file = output_file,
+    output_dir = output_dir,
+    figsize = figsize,
+    dpi = dpi
+  )
+}
+
+plot_network_circle(
+  nodes_df = node_data_339,
+  types_df = type_data_146,
+  target_layers = c(15, 23, 35, 57),
+  layer_radii = c(0.13, 0.35, 0.48, 0.63, 0.78, 1.3),
+  output_file = "circle_layout",
+  output_dir = "./results/ppi/circle_layout",
+  figsize = c(12, 12),
+  dpi = 900
+)
+```
+
+## GOKEGG
+
+```{r}
+enrich_gokegg <- function(
+    gene_list,
+    analysis_type = "all",
+    organism = "human",
+    kegg_database = "KEGG_2021_Human",
+    go_databases = NULL,
+    p_value_cutoff = 0.05) {
+  # 假设biorange包中有一个enrich_gokegg函数
+  enrich_res <- biorange$enrich_analysis$enrich_gokegg(
+    gene_list = gene_list,
+    analysis_type = analysis_type,
+    organism = organism,
+    kegg_database = kegg_database,
+    go_databases = go_databases,
+    p_value_cutoff = p_value_cutoff
+  )
+  enrich_res <- enrich_res %>%
+    dplyr::rename(
+      Description = Term,
+      GeneRatio = `Odds Ratio`,
+      p.adjust = `Adjusted P-value`,
+      ONTOLOGY = Gene_set
+    ) %>%
+    dplyr::mutate(
+      Count = as.numeric(sub("/.*", "", Overlap))
+    ) %>%
+    dplyr::select(
+      Description,
+      GeneRatio,
+      p.adjust,
+      ONTOLOGY,
+      Count
+    )
+}
+```
+### KEGG
+```{r}
+kegg_res <- enrich_gokegg(
+  gene_list = gene_list_399,
+  analysis_type = "kegg",
+  p_value_cutoff = 0.05
+)
+head(kegg_res)
+```
+
+### GO
+```{r}
+go_res <- enrich_gokegg(
+  gene_list = gene_list_399,
+  analysis_type = "go",
+  p_value_cutoff = 0.05
+)
+head(go_res)
+```
+
+### 柱状图
+```{r}
+enrichment_barplot(
+  go_res,
+  output_file = NULL,
+  width = 6,
+  height = 8,
+  dpi = 300,
+  topn = 5,
+  use_gene_ratio = FALSE
+)
+```
+### 气泡图
+```{r}
+## 超出30个字符省略号
+enrichment_dotplot(
+  go_res,
+  output_file = NULL,
+  width = 6,
+  height = 8,
+  dpi = 300,
+  topn = 5,
+  low_color = "blue",
+  high_color = "red",
+  use_gene_ratio = TRUE
+)
+```
+
+## 分子对接
+
+### diffdock
+```{r}
+dock_diffdock <- function(
+    protein_path,
+    ligand_path,
+    samples_per_complex = 10L,
+    output_dir = "results/dock") {
+  biorange$dock$diffdock_run(
+    protein_path,
+    ligand_path,
+    samples_per_complex,
+    output_dir
+  )
+}
+dock_diffdock(
+  protein_path = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70.pdb",
+  ligand_path = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70_ligand.sdf"
+)
+```
+
+### smina 结合能评分
+```{r}
+dock_smina_score <- function(
+    receptor_file,
+    ligand_file) {
+  biorange$dock$smina_score(
+    ligand_file,
+    receptor_file
+  )
+}
+
+dock_smina_score(
+  receptor_file = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70.pdb",
+  ligand_file = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70_ligand.sdf"
+)
+```
+
+
+### 3D 可视化
+```{r}
+## 当前版本仅支持linux
+## 评分要想准确，需要清理蛋白质残基，只保留ATOM的行，不然评分很差。因为深度学习又准确又自由，基本无需预处理
+## 而传统的分子对接都需要预处理，清理，修复蛋白质文件
+dock_plot3d <- function(
+    pdb_file,
+    sdf_file,
+    output_dir = "results/dock/",
+    width = 1200L,
+    height = 900L) {
+  # 输入文件检查
+  if (!file.exists(pdb_file)) {
+    stop(paste("PDB 文件不存在：", normalizePath(pdb_file, mustWork = FALSE)))
+  }
+  if (!file.exists(sdf_file)) {
+    stop(paste("SDF 文件不存在：", normalizePath(sdf_file, mustWork = FALSE)))
+  }
+
+  # 参数校验
+  if (!is.numeric(width) || width <= 0) {
+    stop("参数 'width' 必须是正整数。")
+  }
+  if (!is.numeric(height) || height <= 0) {
+    stop("参数 'height' 必须是正整数。")
+  }
+
+  # 确保输出目录存在
+  if (!dir.exists(output_dir)) {
+    dir.create(output_dir, recursive = TRUE)
+    message(paste("输出目录不存在，已创建目录：", normalizePath(output_dir)))
+  }
+
+  # 构建输出文件路径
+  output_file <- file.path(output_dir, "3Dplot.html")
+
+  # 生成 3D 视图
+  view <- biorange$dock$plot3d(
+    sdf_file,
+    pdb_file,
+    as.integer(width),
+    as.integer(height)
+  )
+
+  # 保存视图为 HTML 文件
+  view$write_html(output_file, fullpage = TRUE)
+
+  # 提示输出文件位置
+  message(paste("3D 图已保存到：", normalizePath(output_file)))
+
+  # 返回视图对象
+  invisible(view)
+}
+
+# 调用示例
+dock_plot3d(
+  pdb_file = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70.pdb",
+  sdf_file = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70_ligand.sdf"
+)
+```

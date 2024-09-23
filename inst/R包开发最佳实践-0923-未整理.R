@@ -74,7 +74,7 @@ usethis::use_r("my_function") # 将 "my_function" 替换为您的函数名
 # 创建 inst/extdata/ 目录
 usethis::use_directory("inst/extdata")
 # raw_data <- read.csv("inst/extdata/my_data_raw.csv") # nolintr
-usethis::use_data_raw(name = "my_dataset") # 将 "my_dataset" 替换为您的数据集名称
+usethis::use_data_raw(name = "gene_list_399") # 将 "my_dataset" 替换为您的数据集名称
 
 # 包含R对象数据data
 usethis::use_data(mydata, overwrite = TRUE)
