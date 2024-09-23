@@ -4,7 +4,7 @@
 #'
 #' 此函数使用GeneCards数据库预测疾病靶点。
 #'
-#' @param query_string 一个表示疾病查询的字符串
+#' @param diseases 一个表示疾病查询的字符串
 #' @return 一个包含预测疾病靶点的数据框
 #' @export
 #'
@@ -18,7 +18,7 @@
 #' genecards_targets <- predict_genecards_disease_targets("癌症")
 #' print(genecards_targets)
 #' }
-predict_genecards_disease_targets <- function(query_string) { # nolintr
+predict_genecards_disease_targets <- function(diseases) { # nolintr
   biorange <- import_biorange()
-  biorange$target_predict$genecards_disease_target(query_string = query_string)
+  biorange$target_predict$genecards_disease_target(diseases = diseases)
 }

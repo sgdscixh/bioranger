@@ -4,7 +4,7 @@
 #'
 #' 此函数使用OMIM数据库预测疾病靶点。
 #'
-#' @param phenotypes 一个表示疾病表型的字符串
+#' @param diseases 一个表示疾病表型的字符串
 #' @return 一个包含预测疾病靶点的数据框
 #' @export
 #'
@@ -17,7 +17,7 @@
 #' omim_targets <- predict_omim_disease_targets("癌症")
 #' print(omim_targets)
 #' }
-predict_omim_disease_targets <- function(phenotypes) {
+predict_omim_disease_targets <- function(diseases) {
   biorange <- import_biorange()
-  biorange$target_predict$omim_disease_target(diseases = phenotypes)
+  biorange$target_predict$omim_disease_target(diseases = diseases)
 }
