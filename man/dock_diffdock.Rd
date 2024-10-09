@@ -25,10 +25,12 @@ dock_diffdock(protein_path, ligand_path, samples_per_complex, output_dir)
 这个函数主要用于进行 Diffdock 的分子对接分析。
 }
 \examples{
+/dontrun{
 dock_diffdock(
   protein_path = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70.pdb",
   ligand_path = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70_ligand.sdf"
 )
+}
 }
 \keyword{biorange}
 \keyword{diffdock,}

@@ -9,10 +9,12 @@
 #' @return 无返回值，但会在指定的目录下生成 Diffdock 分子对接的结果。
 #' @usage dock_diffdock(protein_path, ligand_path, samples_per_complex, output_dir)
 #' @examples
+#' /dontrun{
 #' dock_diffdock(
 #'   protein_path = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70.pdb",
 #'   ligand_path = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70_ligand.sdf"
 #' )
+#' }
 #' @details 这个函数主要用于进行 Diffdock 的分子对接分析。
 #' @keywords dock, diffdock, biorange
 #' @export

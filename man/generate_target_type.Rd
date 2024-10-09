@@ -18,7 +18,7 @@ generate_target_type(kegg_df, target_df)
 这个函数接受 富集结果 和靶点数据框，并生成靶点类型。
 }
 \examples{
-/dotrun{
+/dontrun{
 result <- generate_target_types(kegg_df, target_df)
 gf1 <- result[[1]]
 gf2 <- result[[2]]

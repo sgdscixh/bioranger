@@ -4,7 +4,7 @@
 #' @param target_df 靶点数据的数据框。
 #' @return 返回一个列表，包含两个数据框：gf1 和 gf2。
 #' @examples
-#' /dotrun{
+#' /dontrun{
 #' result <- generate_target_types(kegg_df, target_df)
 #' gf1 <- result[[1]]
 #' gf2 <- result[[2]]
