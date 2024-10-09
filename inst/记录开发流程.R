@@ -11,6 +11,7 @@ usethis::use_r(name = "enrich_dotplot")
 usethis::use_r(name = "datasets")
 usethis::use_r(name = "ppi_generate_type")
 usethis::use_r(name = "adme_filter")
+usethis::use_r(name = "dock_autodock")
 
 
 devtools::document()
@@ -18,7 +19,7 @@ devtools::load_all()
 
 usethis::use_vignette("networkpharam-analysis-use-R")
 
-
+usethis::use_version()
 ## 结束啦，一会生成网页看看效果
 ## 先检查包的完整性
 
