@@ -51,7 +51,7 @@ enrich_gokegg <- function(
       GeneRatio = `Odds Ratio`,
       p.adjust = `Adjusted P-value`,
       ONTOLOGY = Gene_set,
-      Genes = Genes
+      gene_name = Genes
     ) %>%
     dplyr::mutate(
       Count = as.numeric(sub("/.*", "", Overlap))
@@ -63,6 +63,6 @@ enrich_gokegg <- function(
       p.adjust,
       ONTOLOGY,
       Count,
-      Genes
+      gene_name
     )
 }

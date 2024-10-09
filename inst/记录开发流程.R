@@ -9,6 +9,9 @@ usethis::use_data_raw(name = "type_data_146") # 将 "my_dataset" 替换为您的
 usethis::use_r(name = "enrich_barplot")
 usethis::use_r(name = "enrich_dotplot")
 usethis::use_r(name = "datasets")
+usethis::use_r(name = "ppi_generate_type")
+usethis::use_r(name = "adme_filter")
+
 
 devtools::document()
 devtools::load_all()
