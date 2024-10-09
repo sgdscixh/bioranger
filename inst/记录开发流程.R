@@ -20,6 +20,9 @@ devtools::load_all()
 usethis::use_vignette("networkpharam-analysis-use-R")
 
 usethis::use_version()
+# 创建 NEWS.md 文件，用于记录每次版本更新的变更
+usethis::use_news_md()
+
 ## 结束啦，一会生成网页看看效果
 ## 先检查包的完整性
 
