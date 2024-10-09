@@ -1,6 +1,6 @@
 Package: bioranger
 Title: A Package for network pharam
-Version: 1.4.0
+Version: 1.4.1
 Authors@R: 
     person("LIU", "YAN", , "lyfx99@icloud.com", role = c("aut", "cre"))
 Description: 用于网络药理学相关分析的工具流程集合.
