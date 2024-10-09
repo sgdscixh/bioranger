@@ -4,10 +4,10 @@
 \alias{predict_omim_disease_targets}
 \title{预测OMIM疾病靶点}
 \usage{
-predict_omim_disease_targets(phenotypes)
+predict_omim_disease_targets(diseases)
 }
 \arguments{
-\item{phenotypes}{一个表示疾病表型的字符串}
+\item{diseases}{一个表示疾病表型的字符串}
 }
 \value{
 一个包含预测疾病靶点的数据框

@@ -32,5 +32,3 @@ pkgdown::build_site(lazy = TRUE)
 
 # 打包R包
 devtools::build(pkg = ".", binary = FALSE, manual = FALSE, vignettes = FALSE)
-
-# 你们在线R怎么打开来着 网页是哪个？我看看

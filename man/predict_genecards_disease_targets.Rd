@@ -4,10 +4,10 @@
 \alias{predict_genecards_disease_targets}
 \title{预测GeneCards疾病靶点}
 \usage{
-predict_genecards_disease_targets(query_string)
+predict_genecards_disease_targets(diseases)
 }
 \arguments{
-\item{query_string}{一个表示疾病查询的字符串}
+\item{diseases}{一个表示疾病查询的字符串}
 }
 \value{
 一个包含预测疾病靶点的数据框
