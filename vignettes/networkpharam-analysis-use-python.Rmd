@@ -240,102 +240,102 @@ enrichment_dotplot(
 
 ### diffdock
 ```{r}
-dock_diffdock <- function(
-    protein_path,
-    ligand_path,
-    samples_per_complex = 10L,
-    output_dir = "results/dock") {
-  biorange$dock$diffdock_run(
-    protein_path,
-    ligand_path,
-    samples_per_complex,
-    output_dir
-  )
-}
+# dock_diffdock <- function(
+#     protein_path,
+#     ligand_path,
+#     samples_per_complex = 10L,
+#     output_dir = "results/dock") {
+#   biorange$dock$diffdock_run(
+#     protein_path,
+#     ligand_path,
+#     samples_per_complex,
+#     output_dir
+#   )
+# }
 
-unlink("results/dock", recursive = TRUE)
-dock_diffdock(
-  protein_path = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70.pdb",
-  ligand_path = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70_ligand.sdf",
-  output_dir = "results/dock"
-)
+# unlink("results/dock", recursive = TRUE)
+# dock_diffdock(
+#   protein_path = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70.pdb",
+#   ligand_path = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70_ligand.sdf",
+#   output_dir = "results/dock"
+# )
 ```
 
 ### smina 结合能评分
 ```{r}
-dock_smina_score <- function(
-    receptor_file,
-    ligand_file) {
-  biorange$dock$smina_score(
-    ligand_file,
-    receptor_file
-  )
-}
+# dock_smina_score <- function(
+#     receptor_file,
+#     ligand_file) {
+#   biorange$dock$smina_score(
+#     ligand_file,
+#     receptor_file
+#   )
+# }
 
-dock_smina_score(
-  receptor_file = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70.pdb",
-  ligand_file = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70_ligand.sdf"
-)
+# dock_smina_score(
+#   receptor_file = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70.pdb",
+#   ligand_file = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70_ligand.sdf"
+# )
 ```
 
 
 ### 3D 可视化
 ```{r}
-## 当前版本仅支持linux
-## 评分要想准确，需要清理蛋白质残基，只保留ATOM的行，不然评分很差。因为深度学习又准确又自由，基本无需预处理
-## 而传统的分子对接都需要预处理，清理，修复蛋白质文件
-dock_plot3d <- function(
-    pdb_file,
-    sdf_file,
-    output_dir = "results/dock/",
-    width = 1200L,
-    height = 900L) {
-  # 输入文件检查
-  if (!file.exists(pdb_file)) {
-    stop(paste("PDB 文件不存在：", normalizePath(pdb_file, mustWork = FALSE)))
-  }
-  if (!file.exists(sdf_file)) {
-    stop(paste("SDF 文件不存在：", normalizePath(sdf_file, mustWork = FALSE)))
-  }
+# ## 当前版本仅支持linux
+# ## 评分要想准确，需要清理蛋白质残基，只保留ATOM的行，不然评分很差。因为深度学习又准确又自由，基本无需预处理
+# ## 而传统的分子对接都需要预处理，清理，修复蛋白质文件
+# dock_plot3d <- function(
+#     pdb_file,
+#     sdf_file,
+#     output_dir = "results/dock/",
+#     width = 1200L,
+#     height = 900L) {
+#   # 输入文件检查
+#   if (!file.exists(pdb_file)) {
+#     stop(paste("PDB 文件不存在：", normalizePath(pdb_file, mustWork = FALSE)))
+#   }
+#   if (!file.exists(sdf_file)) {
+#     stop(paste("SDF 文件不存在：", normalizePath(sdf_file, mustWork = FALSE)))
+#   }
 
-  # 参数校验
-  if (!is.numeric(width) || width <= 0) {
-    stop("参数 'width' 必须是正整数。")
-  }
-  if (!is.numeric(height) || height <= 0) {
-    stop("参数 'height' 必须是正整数。")
-  }
+#   # 参数校验
+#   if (!is.numeric(width) || width <= 0) {
+#     stop("参数 'width' 必须是正整数。")
+#   }
+#   if (!is.numeric(height) || height <= 0) {
+#     stop("参数 'height' 必须是正整数。")
+#   }
 
-  # 确保输出目录存在
-  if (!dir.exists(output_dir)) {
-    dir.create(output_dir, recursive = TRUE)
-    message(paste("输出目录不存在，已创建目录：", normalizePath(output_dir)))
-  }
+#   # 确保输出目录存在
+#   if (!dir.exists(output_dir)) {
+#     dir.create(output_dir, recursive = TRUE)
+#     message(paste("输出目录不存在，已创建目录：", normalizePath(output_dir)))
+#   }
 
-  # 构建输出文件路径
-  output_file <- file.path(output_dir, "3Dplot.html")
+#   # 构建输出文件路径
+#   output_file <- file.path(output_dir, "3Dplot.html")
 
-  # 生成 3D 视图
-  view <- biorange$dock$plot3d(
-    sdf_file,
-    pdb_file,
-    as.integer(width),
-    as.integer(height)
-  )
+#   # 生成 3D 视图
+#   view <- biorange$dock$plot3d(
+#     sdf_file,
+#     pdb_file,
+#     as.integer(width),
+#     as.integer(height)
+#   )
 
-  # 保存视图为 HTML 文件
-  view$write_html(output_file, fullpage = TRUE)
+#   # 保存视图为 HTML 文件
+#   view$write_html(output_file, fullpage = TRUE)
 
-  # 提示输出文件位置
-  message(paste("3D 图已保存到：", normalizePath(output_file)))
+#   # 提示输出文件位置
+#   message(paste("3D 图已保存到：", normalizePath(output_file)))
 
-  # 返回视图对象
-  invisible(view)
-}
+#   # 返回视图对象
+#   invisible(view)
+# }
 
-# 调用示例
-dock_plot3d(
-  pdb_file = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70.pdb",
-  sdf_file = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70_ligand.sdf"
-)
+# # 调用示例
+# dock_plot3d(
+#   pdb_file = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70.pdb",
+#   sdf_file = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70_ligand.sdf"
+# )
 ```

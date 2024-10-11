@@ -19,7 +19,7 @@ You can install the development version of bioranger from
 
 ``` r
 # install.packages("pak")
-pak::pak("sgdscixh/bioranger")
+pak::pkg_install("sgdscixh/bioranger")
 ```
 
 ## Example

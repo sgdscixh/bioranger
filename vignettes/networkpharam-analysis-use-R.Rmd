@@ -120,30 +120,30 @@ enrichment_dotplot(
 
 示例：
 ```{r}
-unlink("results/dock", recursive = TRUE)
-dock_diffdock(
-  protein_path = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70.pdb",
-  ligand_path = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70_ligand.sdf",
-  output_dir = "results/dock"
-)
+# unlink("results/dock", recursive = TRUE)
+# dock_diffdock(
+#   protein_path = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70.pdb",
+#   ligand_path = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70_ligand.sdf",
+#   output_dir = "results/dock"
+# )
 ```
 
 * smina 结合能评分：这个函数会调用`biorange`包中的`smina_score`函数来计算结合能评分。它接受受体文件路径`receptor_file`和配体文件路径`ligand_file`作为参数。函数的结果将作为数值返回。
 
 示例：
 ```{r}
-dock_smina_score(
-  receptor_file = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70.pdb",
-  ligand_file = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70_ligand.sdf"
-)
+# dock_smina_score(
+#   receptor_file = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70.pdb",
+#   ligand_file = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70_ligand.sdf"
+# )
 ```
 
 * 3D 可视化：这个函数会调用`biorange`包中的`plot3d`函数来进行3D可视化。它接受PDB文件路径`pdb_file`和SDF文件路径`sdf_file`作为参数。函数的结果将保存在指定的输出目录中。
 
 示例：
 ```{r}
-dock_plot3d(
-  pdb_file = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70.pdb",
-  sdf_file = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70_ligand.sdf"
-)
+# dock_plot3d(
+#   pdb_file = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70.pdb",
+#   sdf_file = "/home/liuyan/projects/package/bioranger/inst/example_data/6w70_ligand.sdf"
+# )
 ```
