@@ -12,6 +12,7 @@ usethis::use_r(name = "datasets")
 usethis::use_r(name = "ppi_generate_type")
 usethis::use_r(name = "adme_filter")
 usethis::use_r(name = "dock_autodock")
+usethis::use_r(name = "predict_chembl_local_target")
 
 
 devtools::document()

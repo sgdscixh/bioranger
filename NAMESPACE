@@ -2,6 +2,7 @@
 
 export("%>%")
 export(admet_filter)
+export(chembl_inchikey_target)
 export(create_venn_diagram)
 export(dock_autodock)
 export(dock_diffdock)

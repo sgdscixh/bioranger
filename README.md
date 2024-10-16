@@ -20,6 +20,9 @@ You can install the development version of bioranger from
 ``` r
 # install.packages("pak")
 pak::pkg_install("sgdscixh/bioranger")
+
+# 使用remotes::install_github()
+remotes::install_github("sgdscixh/bioranger")
 ```
 
 ## Example
