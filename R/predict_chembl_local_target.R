@@ -24,10 +24,10 @@ chembl_inchikey_target <- function(compound_input, organism = "Homo sapiens",
                                    confidence_types = c("active", "both"),
                                    threshold = 6) {
     # 导入Python模块
-    biorange <- reticulate::import("biorange.target_predict")
+    biorange <- import_biorange()
 
     # 调用Python函数
-    result <- biorange$chembl_inchikey_target(compound_input, organism, confidence_column, confidence_types, threshold)
+    result <- biorange$target_predict$chembl_inchikey_target(compound_input, organism, confidence_column, confidence_types, threshold)
 
     # 将结果转换为R的数据框（假设Python返回的是Pandas DataFrame）
     return(result)
