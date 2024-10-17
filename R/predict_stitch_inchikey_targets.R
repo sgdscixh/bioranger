@@ -13,12 +13,10 @@
 #' 结果会被返回为一个数据框。
 #'
 #' @examples
-#' \dontrun{
-#' inchikeys <- c("BSYNRYMUTXBXSQ-UHFFFAOYSA-N", "LFQSCWFLJHTTHZ-UHFFFAOYSA-N")
-#' stitch_inchikey_targets <- predict_stitch_inchikey_targets(inchikeys)
+#' inchikeys <- c("BJYHZSNSMVEQEH-SJORKVTESA-N", "VXIXUWQIVKSKSA-UHFFFAOYSA-N")
+#' stitch_inchikey_targets <- predict_stitch_inchikey_targets(inchikeys, combined_score_threshold = 300)
 #' print(stitch_inchikey_targets)
-#' }
-predict_stitch_inchikey_targets <- function(inchikeys) { # nolintr
+predict_stitch_inchikey_targets <- function(inchikeys, combined_score_threshold = 300) { # nolintr
   biorange <- import_biorange()
-  biorange$target_predict$stich_inchikey_target(inchikeys = inchikeys)
+  biorange$target_predict$stich_inchikey_target(inchikeys = inchikeys, combined_score_threshold = combined_score_threshold)
 }

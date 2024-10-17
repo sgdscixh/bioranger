@@ -39,3 +39,17 @@ pkgdown::build_site(lazy = TRUE)
 
 # 打包R包
 devtools::build(pkg = ".", binary = FALSE, manual = FALSE, vignettes = FALSE)
+
+# 使用R安装python包，到R交互的python虚拟环境
+
+# 注意vscode自动打开的 R terminal 是radian，他是用python模拟R终端，再在里面用R模拟python的话 就套娃了，不被允许会报堆栈错误
+# 我设置的默认自动打开radian，按ctrl + enter 运行R会自动打开radian
+# 所以需要用Rstudio打开R终端，或者直接命令行输出R打开丑八怪的R终端
+
+# 1.强制指定虚拟环境，参考之前的教程
+
+# 2.查看虚拟环境
+reticulate::py_config() # 查看使用的是什么虚拟环境
+
+# 3.安装python包，记得使用ignore_installed = TRUE才会强制升级，相当于pip install xxx --upgrade
+reticulate::py_install("/home/liuyan/projects/package/biorange/dist/biorange-1.4.1-py3-none-any.whl", ignore_installed = TRUE)
