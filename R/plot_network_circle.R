@@ -16,7 +16,7 @@
 #' plot_network_circle(
 #'   nodes_df = node_data_339,
 #'   types_df = type_data_146,
-#'   target_layers = c(15, 23, 35, 57),
+#'   target_layers = c(15L, 23L, 35L, 57L),
 #'   layer_radii = c(0.13, 0.35, 0.48, 0.63, 0.78, 1.3),
 #'   output_file = "circle_layout",
 #'   output_dir = "./results/ppi/circle_layout",

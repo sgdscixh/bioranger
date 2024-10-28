@@ -13,10 +13,12 @@ usethis::use_r(name = "ppi_generate_type")
 usethis::use_r(name = "adme_filter")
 usethis::use_r(name = "dock_autodock")
 usethis::use_r(name = "predict_chembl_local_target")
+usethis::use_r(name = "dockplot_2d")
+usethis::use_r(name = "dockplot_3d")
 
 
 devtools::document()
-devtools::load_all()
+devtools::load_all() # 加载所有函数进来，用作测试。别忘了 我们还没有安装新的conda，在这个测试的环境
 
 usethis::use_vignette("networkpharam-analysis-use-R")
 
@@ -52,4 +54,16 @@ devtools::build(pkg = ".", binary = FALSE, manual = FALSE, vignettes = FALSE)
 reticulate::py_config() # 查看使用的是什么虚拟环境
 
 # 3.安装python包，记得使用ignore_installed = TRUE才会强制升级，相当于pip install xxx --upgrade
-reticulate::py_install("/home/liuyan/projects/package/biorange/dist/biorange-1.4.1-py3-none-any.whl", ignore_installed = TRUE)
+reticulate::py_install("/home/liuyan/projects/package/biorange/dist/biorange-1.4.2-py3-none-any.whl", ignore_installed = TRUE)
+# 这个R包还是之前的版本，所以在R
+
+# 这里的python包还需要换吗我一直有个问题，这个python包是不是要更新 我这不就是在更新嘛
+reticulate::use_condaenv("r-baby", required = TRUE)
+
+reticulate::py_config()
+
+
+
+
+
+#
