@@ -4,7 +4,7 @@
 \alias{predict_stitch_inchikey_targets}
 \title{使用InChIKeys预测STITCH靶点}
 \usage{
-predict_stitch_inchikey_targets(inchikeys)
+predict_stitch_inchikey_targets(inchikeys, combined_score_threshold = 300)
 }
 \arguments{
 \item{inchikeys}{一个包含InChIKeys的字符向量}
@@ -20,9 +20,7 @@ predict_stitch_inchikey_targets(inchikeys)
 结果会被返回为一个数据框。
 }
 \examples{
-\dontrun{
-inchikeys <- c("BSYNRYMUTXBXSQ-UHFFFAOYSA-N", "LFQSCWFLJHTTHZ-UHFFFAOYSA-N")
-stitch_inchikey_targets <- predict_stitch_inchikey_targets(inchikeys)
+inchikeys <- c("BJYHZSNSMVEQEH-SJORKVTESA-N", "VXIXUWQIVKSKSA-UHFFFAOYSA-N")
+stitch_inchikey_targets <- predict_stitch_inchikey_targets(inchikeys, combined_score_threshold = 300)
 print(stitch_inchikey_targets)
-}
 }

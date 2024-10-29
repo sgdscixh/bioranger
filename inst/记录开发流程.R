@@ -36,9 +36,10 @@ styler::style_pkg()
 lintr::lint_package()
 devtools::check()
 
-# 构建 vignette（在添加内容后）
+# 构建 vignette长文档，用于展示包的功能和用法（在添加内容后）
 devtools::build_vignettes()
 # usethis::use_pkgdown()
+# 构建静态网站文档，lazy = TRUE 表示重新构建已改变的文档
 pkgdown::build_site(lazy = TRUE)
 
 # 打包R包
