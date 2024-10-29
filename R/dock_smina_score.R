@@ -17,9 +17,9 @@
 dock_smina_score <- function(
     receptor_file,
     ligand_file) {
-  biorange <- import_biorange()
+  biorange <- reticulate::import("biorange")
   biorange$dock$smina_score(
-    ligand_file,
-    receptor_file
+    receptor_file = receptor_file,
+    ligand_file = ligand_file
   )
 }
