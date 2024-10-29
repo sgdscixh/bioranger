@@ -15,6 +15,8 @@ usethis::use_r(name = "dock_autodock")
 usethis::use_r(name = "predict_chembl_local_target")
 usethis::use_r(name = "dockplot_2d")
 usethis::use_r(name = "dockplot_3d")
+usethis::use_r(name = "dock_split")
+usethis::use_r(name = "dock_clean")
 
 
 devtools::document()
@@ -53,11 +55,10 @@ devtools::build(pkg = ".", binary = FALSE, manual = FALSE, vignettes = FALSE)
 # 2.查看虚拟环境
 reticulate::py_config() # 查看使用的是什么虚拟环境
 
-# 3.安装python包，记得使用ignore_installed = TRUE才会强制升级，相当于pip install xxx --upgrade
+# 3.手动安装python包，记得使用ignore_installed = TRUE才会强制升级，相当于pip install xxx --upgrade
 reticulate::py_install("/home/liuyan/projects/package/biorange/dist/biorange-1.4.2-py3-none-any.whl", ignore_installed = TRUE)
-# 这个R包还是之前的版本，所以在R
 
-# 这里的python包还需要换吗我一直有个问题，这个python包是不是要更新 我这不就是在更新嘛
+
 reticulate::use_condaenv("r-baby", required = TRUE)
 
 reticulate::py_config()
