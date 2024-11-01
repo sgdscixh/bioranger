@@ -19,7 +19,7 @@ usethis::use_r(name = "dock_split")
 usethis::use_r(name = "dock_clean")
 
 
-devtools::document()
+devtools::document() # 新增说明书
 devtools::load_all() # 加载所有函数进来，用作测试。别忘了 我们还没有安装新的conda，在这个测试的环境
 
 usethis::use_vignette("networkpharam-analysis-use-R")
@@ -65,7 +65,10 @@ reticulate::use_condaenv("r-baby", required = TRUE)
 reticulate::py_config()
 
 
-
-
-
+# 更新R包及上传到github
+# 1. 更新后将改动或新增文件提交到git，控制版本
+# 2. 如有新增R函数模块，需运行devtools::document()新增对应说明书
+# 3. 运行 devtools::build() 构建R包
+# 4. 运行 export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890 更改代理
+# 5. 运行git push 将包上传到git hub
 #
