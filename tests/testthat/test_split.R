@@ -10,7 +10,7 @@ dock_diffdock(protein_path = "/home/liuyan/projects/package/biorange/biorange/do
 
 
 # 给蛋白质加氢
-dock_fix_protein("/home/liuyan/projects/package/biorange/biorange/dock/todo/AF-P05177-F1-model_v4.pdb", "./results/dock/fix3.pdb")
+dock_fix_protein("/home/liuyan/projects/package/biorang_bak/biorange/dock/todo/AF-P05177-F1-model_v4.pdb", "./fix3.pdb")
 # 预处理
 dock_split_sdf("/home/liuyan/projects/package/bioranger/results/dock/ligand1_docked__52a79f44-f25f-45c7-9d09-2ae8f0f969ff")
 
