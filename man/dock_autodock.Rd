@@ -4,7 +4,7 @@
 \alias{dock_autodock}
 \title{Autodock 分子对接函数}
 \usage{
-dock_autodock(protein_path, ligand_path, samples_per_complex, output_dir)
+dock_autodock(protein_path, ligand_path, samples_per_complex, output_dir,tool_id)
 }
 \arguments{
 \item{protein_path}{蛋白质文件的路径。}
@@ -12,6 +12,8 @@ dock_autodock(protein_path, ligand_path, samples_per_complex, output_dir)
 \item{ligand_path}{配体文件的路径。}
 
 \item{output_dir}{输出文件夹的路径，默认为 "results/dock"。}
+
+\item{tool_id}{切换快速对接和精准对接的ID，默认为 快速对接id"aee83f8c6aa459ef";精准对接id为"fdd780e7acf24f37"。}
 }
 \value{
 无返回值，但会在指定的目录下生成 Autodock 分子对接的结果。

@@ -48,7 +48,7 @@ enrich_gokegg <- function(
   enrich_res <- enrich_res %>%
     dplyr::rename(
       Description = Term,
-      GeneRatio = `Odds Ratio`,
+      OddsRatio = `Odds Ratio`,
       p.adjust = `Adjusted P-value`,
       ONTOLOGY = Gene_set,
       gene_name = Genes
@@ -59,7 +59,7 @@ enrich_gokegg <- function(
     ) %>%
     dplyr::select(
       Description,
-      GeneRatio,
+      OddsRatio,
       p.adjust,
       ONTOLOGY,
       Count,

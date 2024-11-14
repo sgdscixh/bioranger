@@ -58,7 +58,7 @@ reticulate::py_config() # 查看使用的是什么虚拟环境
 
 # 3.手动安装python包，记得使用ignore_installed = TRUE才会强制升级，相当于pip install xxx --upgrade
 reticulate::py_install("/home/liuyan/projects/package/biorang_bak/dist/biorange-1.4.3-py3-none-any.whl", ignore_installed = TRUE)
-
+# 手动安装 pip install "/home/liuyan/projects/package/biorang_bak/dist/biorange-1.4.3-py3-none-any.whl"
 # z这里
 reticulate::use_condaenv("r-baby", required = TRUE)
 

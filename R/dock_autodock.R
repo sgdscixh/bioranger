@@ -5,8 +5,9 @@
 #' @param protein_path 蛋白质文件的路径。
 #' @param ligand_path 配体文件的路径。
 #' @param output_dir 输出文件夹的路径，默认为 "results/dock"。
+#' @param tool_id 切换快速对接和精准对接的ID，默认为 快速对接id"aee83f8c6aa459ef";精准对接id为"fdd780e7acf24f37"。
 #' @return 无返回值，但会在指定的目录下生成 Autodock 分子对接的结果。
-#' @usage dock_autodock(protein_path, ligand_path, samples_per_complex, output_dir)
+#' @usage dock_autodock(protein_path, ligand_path, samples_per_complex, output_dir,tool_id)
 #' @examples
 #' /dontrun{
 #' dock_autodock(
@@ -21,11 +22,13 @@ dock_autodock <- function(
     protein_path,
     ligand_path,
     samples_per_complex = 10L,
-    output_dir = "results/dock") {
+    output_dir = "results/dock",
+    tool_id = "aee83f8c6aa459ef" ) {
   biorange <- import_biorange()
   biorange$dock$autodock_run(
     pdb_file_path = protein_path,
     sdf_file_path = ligand_path,
-    outdir = output_dir
+    outdir = output_dir,
+    tool_id = tool_id
   )
 }
