@@ -51,18 +51,22 @@ enrich_gokegg <- function(
       OddsRatio = `Odds Ratio`,
       p.adjust = `Adjusted P-value`,
       ONTOLOGY = Gene_set,
-      gene_name = Genes
+      gene_name = Genes,
+      ID = ID,
+      P_value = "P-value"
     ) %>%
     dplyr::mutate(
       Count = as.numeric(sub("/.*", "", Overlap))
       # 基因列表
     ) %>%
     dplyr::select(
+      ID,
       Description,
+      Count,
       OddsRatio,
+      P_value,
       p.adjust,
       ONTOLOGY,
-      Count,
-      gene_name
+      gene_name,
     )
 }
