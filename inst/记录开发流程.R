@@ -17,6 +17,7 @@ usethis::use_r(name = "dockplot_2d")
 usethis::use_r(name = "dockplot_3d")
 usethis::use_r(name = "dock_split")
 usethis::use_r(name = "dock_clean")
+usethis::use_r(name = "ppi_total_network")
 
 
 devtools::document() # 新增说明书
