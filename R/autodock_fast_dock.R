@@ -76,7 +76,7 @@ autodock_fast_dock <- function(protein_path, ligand_path, output_dir, tool_id) {
   write.xlsx(results_df, output_file)
   
   # 返回结果数据框
-  return(results_df)
+  return(list(results_df = results_df, sdf_files_autodock = sdf_files_autodock))
 }
 
 
