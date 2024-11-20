@@ -18,7 +18,8 @@ usethis::use_r(name = "dockplot_3d")
 usethis::use_r(name = "dock_split")
 usethis::use_r(name = "dock_clean")
 usethis::use_r(name = "ppi_total_network")
-
+usethis::use_r(name = "autodock_fast_dock")
+usethis::use_r(name = "autodock_accute_dock")
 
 devtools::document() # 新增说明书
 devtools::load_all() # 加载所有函数进来，用作测试。别忘了 我们还没有安装新的conda，在这个测试的环境

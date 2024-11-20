@@ -61,3 +61,21 @@ disease_name <- "Lung cancer"
 formula_name <- "SJZT"
 output_files <- total_network_plot(kegg_data, metabolites_list, degree_table, disease, formula)
 print(output_files)
+
+
+
+# ppi_analysis
+
+gene_list <- gene_list_399
+output_dir <- "./results/ppi"
+ppi_analysis(gene_list, output_dir)
+
+
+gene_names_file <- read.csv("/home/liuyan/projects/package/biorang_bak/biorange/data/shared targets of drugs and diseases.csv")
+gene_names <- gene_names_file$shared_targets
+
+output_dir <- "./results/output2/ppi"
+
+# 完整ppi
+results <- ppi_analysis(gene_names, output_dir)
+print(results)
