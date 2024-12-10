@@ -11,7 +11,7 @@
 #' @param output_file A character string specifying the path to the output file.
 #' @import reticulate
 #' @export
-create_venn_diagram <- function(sets, set_names, title, output_file) {
+create_venn_diagram <- function(sets, set_names, title, output_file, output_dir) {
   # Import the biorange module
   biorange <- reticulate::import("biorange")
 
@@ -20,12 +20,12 @@ create_venn_diagram <- function(sets, set_names, title, output_file) {
     stop("Length of sets must match length of set_names.")
   }
 
-  # Check if output file path is valid
-  output_dir <- dirname(output_file)
-  if (!dir.exists(output_dir) && output_dir != "") {
-    stop("The specified output directory does not exist.")
-  }
+  # # Check if output file path is valid
+  # output_dir <- dirname(output_file)
+  # if (!dir.exists(output_dir) && output_dir != "") {
+  #   stop("The specified output directory does not exist.")
+  # }
 
   # Generate the Venn diagram
-  biorange$venn$vennplot(sets, set_names, title, output_file)
+  biorange$venn$vennplot(sets, set_names, title, output_file, output_dir)
 }

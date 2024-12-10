@@ -30,15 +30,20 @@ write.table(kk, file = "results/dock/score_output.txt", sep = "\t", row.names = 
 mm <- import_biorange()
 mm$dock$smina_score(receptor_file = "/home/liuyan/projects/package/biorange/biorange/dock/todo/AF-P05177-F1-model_v4.pdb", ligand_file = "/home/liuyan/projects/package/bioranger/results/dock/complex_0/rank1_confidence-0.53.sdf")
 
-
+# chembl预测靶点
 compound_input <- c("HJNJAUYFFFOFBW-UHFFFAOYSA-N", "OBWHQJYOOCRPST-UHFFFAOYSA-N")
 result <- chembl_inchikey_target(compound_input)
 print(result)
 
 
+
+# tcmsp预测靶点
 inchikeys <- c("CJBDUOMQLFKVQC-UHFFFAOYSA-N", "ZOYASYRPGHCQHW-UHFFFAOYSA-N")
 tcmsp_inchikey_targets <- predict_tcmsp_inchikey_targets(inchikeys)
 print(tcmsp_inchikey_targets)
+
+
+
 
 gene_list_399 <- c("BCL2", "BCL2L1", "BCL2L11", "BCL2L12", "BCL2L2", "BCL2L3", "BCL2L5", "BCL2L6", "BCL2L7", "BCL2L8", "BCL2L9", "BCL2L10", "BCL2L13", "BCL2L14", "BCL2L15", "BCL2L16", "BCL2L17", "BCL2L18", "BCL2L19", "BCL2L20", "BCL2L21", "BCL2L22", "BCL2L23", "BCL2L24", "BCL2L25", "BCL2L26", "BCL2L27", "BCL2L28", "BCL2L29", "BCL2L30", "BCL2L31", "BCL2L32", "BCL2L33")
 # KEGG
@@ -79,3 +84,36 @@ output_dir <- "./results/output2/ppi"
 # 完整ppi
 results <- ppi_analysis(gene_names, output_dir)
 print(results)
+
+
+nodes_df <- read.csv("/home/liuyan/projects/package/biorang_bak/node_88.csv")
+types_df <- read.csv("/home/liuyan/projects/package/biorang_bak/type_88.csv")
+network_circular_plot(nodes_df, types_df, compound_layers = list(8L), target_layers = list(10L, 20L, 29L, 38L, 47L), output_file = "pathway_network_go", output_dir = "./results/ppi/pathway_network")
+
+
+compound_sum <- c(8L)
+target_sum <- c(144L)
+compound_sequence <- generate_compound_sequence(compound_sum)
+compound_sequence
+target_sequence <- generate_target_sequence(compound_sum, target_sum)
+target_sequence
+# generate_target_sequence(compound_sum, target_sum)
+generate_node_sequence()
+
+
+kegg_df <- read.csv("/home/liuyan/projects/package/biorang_bak/biorange/data/kegg_df.csv")
+target_df <- read.csv("/home/liuyan/projects/package/biorange/biorange/data/target_df.csv")
+
+result <- generate_target_type(kegg_df, target_df)
+node_df <- result[[1]]
+type_df <- result[[2]]
+type_counts <- result[[4]]
+target_num <- type_counts["target"]
+compound_num <- type_counts["compound"]
+target_num
+
+TCMSP <- c("A", "B", "C", "D", "D", "D")
+Chembl <- c("B", "C", "E", "F")
+STITCH <- c("C", "D", "E", "G")
+
+create_venn_diagram(list(TCMSP, Chembl, STITCH), c("TCMSP", "Chembl", "STITCH"), "Ingredients_Targets_venn", "Ingredients_Targets_venn.png", output_dir = "./results/custom/venn")

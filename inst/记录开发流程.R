@@ -20,10 +20,13 @@ usethis::use_r(name = "dock_clean")
 usethis::use_r(name = "ppi_total_network")
 usethis::use_r(name = "autodock_fast_dock")
 usethis::use_r(name = "autodock_accute_dock")
+usethis::use_r(name = "network_circular_plot")
+usethis::use_r(name = "generate_compound_sequence")
+usethis::use_r(name = "generate_target_sequence")
+
 
 devtools::document() # 新增说明书
-devtools::load_all() # 加载所有函数进来，用作测试。别忘了 我们还没有安装新的conda，在这个测试的环境
-
+devtools::load_all() # 加载所有函数进来，用作测试。
 usethis::use_vignette("networkpharam-analysis-use-R")
 
 usethis::use_version()
@@ -60,7 +63,7 @@ reticulate::py_config() # 查看使用的是什么虚拟环境
 
 # 3.手动安装python包，记得使用ignore_installed = TRUE才会强制升级，相当于pip install xxx --upgrade
 reticulate::py_install("/home/liuyan/projects/package/biorang_bak/dist/biorange-1.4.3-py3-none-any.whl", ignore_installed = TRUE)
-# 手动安装 pip install "/home/liuyan/projects/package/biorang_bak/dist/biorange-1.4.3-py3-none-any.whl"
+# 手动安装 pip install "/home/liuyan/projects/package/biorang_bak/dist/biorange-1.4.3.2-py3-none-any.whl"
 # z这里
 reticulate::use_condaenv("r-baby", required = TRUE)
 

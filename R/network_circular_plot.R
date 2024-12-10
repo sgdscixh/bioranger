@@ -7,11 +7,11 @@
 #' @param output_file 字符串，输出文件的名称。
 #' @param output_dir 字符串，输出文件夹的路径。
 #' @return 无返回值，但会在指定的目录下生成网络循环图。
-#' @usage network_circul_plot(nodes_df, types_df, compound_layers, target_layers, output_file, output_dir)
+#' @usage network_circular_plot(nodes_df, types_df, compound_layers, target_layers, output_file, output_dir)
 #' @examples
 #' nodes_df <- read.csv("nodes_df_concentric.csv")
 #' types_df <- read.csv("type_df_concentric.csv")
-#' network_circul_plot(
+#' network_circular_plot(
 #'     nodes_df,
 #'     types_df,
 #'     compound_layers = c(8L),
@@ -19,11 +19,11 @@
 #'     output_file = "pathway_network_go",
 #'     output_dir = "./results/ppi/pathway_network"
 #' )
-#' @details 这个函数调用了 network_circul_plot 函数来绘制网络循环图。
-#' @keywords network, plot, circul
+#' @details 这个函数调用了 network_circular_plot 函数来绘制网络循环图。
+#' @keywords network, plot, circular
 #' @importFrom utils read.csv
 #' @export
-network_circul_plot <- function(nodes_df, types_df, compound_layers, target_layers, output_file, output_dir) {
+network_circular_plot <- function(nodes_df, types_df, compound_layers, target_layers, output_file, output_dir) {
     # 导入Python biorange模块
     biorange <- import_biorange()
     result <- biorange$ppi$network_circul_plot(nodes_df, types_df, compound_layers, target_layers, output_file, output_dir)

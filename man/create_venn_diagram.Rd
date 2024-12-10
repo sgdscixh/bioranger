@@ -4,7 +4,7 @@
 \alias{create_venn_diagram}
 \title{绘制venn图，输出交集数据表}
 \usage{
-create_venn_diagram(sets, set_names, title, output_file)
+create_venn_diagram(sets, set_names, title, output_file, output_dir)
 }
 \arguments{
 \item{sets}{A list of character vectors}
