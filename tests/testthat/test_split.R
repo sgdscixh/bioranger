@@ -91,8 +91,8 @@ types_df <- read.csv("/home/liuyan/projects/package/biorang_bak/type_88.csv")
 network_circular_plot(nodes_df, types_df, compound_layers = list(8L), target_layers = list(10L, 20L, 29L, 38L, 47L), output_file = "pathway_network_go", output_dir = "./results/ppi/pathway_network")
 
 
-compound_sum <- c(8L)
-target_sum <- c(144L)
+compound_sum <- c(81L)
+target_sum <- c(242L)
 compound_sequence <- generate_compound_sequence(compound_sum)
 compound_sequence
 target_sequence <- generate_target_sequence(compound_sum, target_sum)

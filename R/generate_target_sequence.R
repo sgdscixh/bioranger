@@ -20,7 +20,7 @@ generate_target_sequence <- function(compound_sum, target_sum) {
     biorange <- reticulate::import("biorange")
     # 生成化合物序列
     target_sequence <- biorange$ppi$generate_target_sequence(compound_sum, target_sum)
-    print("Target sequence:", target_sequence)
+
     # 返回结果
     return(list(target_sequence = target_sequence))
 }
