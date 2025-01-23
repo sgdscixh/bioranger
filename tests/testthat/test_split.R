@@ -117,3 +117,6 @@ Chembl <- c("B", "C", "E", "F")
 STITCH <- c("C", "D", "E", "G")
 
 create_venn_diagram(list(TCMSP, Chembl, STITCH), c("TCMSP", "Chembl", "STITCH"), "Ingredients_Targets_venn", "Ingredients_Targets_venn.png", output_dir = "./results/custom/venn")
+
+
+format_table("/home/liuyan/projects/package/biorang_bak/表格路径.yaml", "/home/liuyan/projects/package/biorang_bak/中药入血注释.yaml")

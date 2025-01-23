@@ -21,7 +21,7 @@ predict_ttd_disease_targets(diseases)
 }
 \examples{
 \dontrun{
-ttd_targets <- predict_ttd_disease_targets("癌症")
+ttd_targets <- predict_ttd_disease_targets("lung cancer")
 print(ttd_targets)
 }
 }

@@ -23,11 +23,12 @@ usethis::use_r(name = "autodock_accute_dock")
 usethis::use_r(name = "network_circular_plot")
 usethis::use_r(name = "generate_compound_sequence")
 usethis::use_r(name = "generate_target_sequence")
+usethis::use_r(name = "table_format")
 
 
 devtools::document() # 新增说明书
 devtools::load_all() # 加载所有函数进来，用作测试。
-usethis::use_vignette("networkpharam-analysis-use-R")
+cusethis::use_vignette("networkpharam-analysis-use-R")
 
 usethis::use_version()
 # 创建 NEWS.md 文件，用于记录每次版本更新的变更
@@ -68,6 +69,15 @@ reticulate::py_install("/home/liuyan/projects/package/biorang_bak/dist/biorange-
 reticulate::use_condaenv("r-baby", required = TRUE)
 
 reticulate::py_config()
+
+# 查看biorange的版本信息
+reticulate::import("biorange")
+
+package <- import("biorange") # 替换为你要检查的包名
+
+# 获取并打印版本号
+version <- package$`__version__`
+print(version)
 
 
 # 更新R包及上传到github

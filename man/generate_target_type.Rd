@@ -19,8 +19,15 @@ generate_target_type(kegg_df, target_df)
 }
 \examples{
 /dontrun{
+kegg_df <- read.csv("./kegg_df.csv")
+target_df <- read.csv("./target_df.csv")
+
 result <- generate_target_types(kegg_df, target_df)
-gf1 <- result[[1]]
-gf2 <- result[[2]]
+node_df <- result[[1]]
+type_df <- result[[2]]
+type_counts <- result[[4]]
+target_num <- type_counts["target"]
+compound_num <- type_counts["compound"] 
 }
+
 }
