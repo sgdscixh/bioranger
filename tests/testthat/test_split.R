@@ -58,13 +58,15 @@ head(go_res)
 enrichment_dotplot(go_res, output_file = NULL, width = 6, height = 8, dpi = 300, topn = 10, low_color = "blue", high_color = "red", use_odds_ratio = TRUE)
 enrichment_barplot(go_res, output_file = NULL, width = 6, height = 8, dpi = 300, topn = 10, use_odds_ratio = FALSE)
 
+library(openxlsx)
 # TOTAL NETWORK
-kegg_res <- read.csv("/home/liuyan/projects/package/biorang_bak/tests/kegg_res (2).csv")
-metabolites_list <- read.csv("/home/liuyan/projects/package/biorang_bak/tests/metabolite_targets.csv")
-degree_table <- read.csv("/home/liuyan/projects/package/biorang_bak/tests/string_node_degree.csv")
+kegg_res <- read.xlsx("/home/liuyan/projects/package/biorang_bak/kegg_res.xlsx")
+metabolites_list <- read.xlsx("/home/liuyan/projects/package/biorang_bak/metabolites_list.xlsx")
+degree_table <- read.xlsx("/home/liuyan/projects/package/biorang_bak/string_node_degree.xlsx")
 disease_name <- "Lung cancer"
 formula_name <- "SJZT"
-output_files <- total_network_plot(kegg_data, metabolites_list, degree_table, disease, formula)
+output_dir <- "./results/output2/ppi"
+output_files <- total_network_plot(kegg_data, metabolites_list, degree_table, disease, formula, output_dir)
 print(output_files)
 
 

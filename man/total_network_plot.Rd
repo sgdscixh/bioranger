@@ -4,7 +4,7 @@
 \alias{total_network_plot}
 \title{ppi_total_network}
 \usage{
-total_network_plot(kegg_data, metabolites_list, degree_table, disease, formula)
+total_network_plot(kegg_data, metabolites_list, degree_table, disease, formula,output_dir)
 }
 \arguments{
 \item{kegg_data}{包含KEGG通路数据的数据框。}
@@ -16,6 +16,7 @@ total_network_plot(kegg_data, metabolites_list, degree_table, disease, formula)
 \item{disease}{指定感兴趣的疾病的字符串，例如“Lung cancer”。}
 
 \item{formula}{指定方剂的首字母缩写字符串，例如四君子汤对应“SJZT”。}
+\item{output_dir}{结果保存地址。}
 }
 \value{
 2个包含网络图分析生成的输出文件的列表，total_node_file和total_type_file。
@@ -32,7 +33,8 @@ metabolites_list <- read.csv("/path/to/metabolite_targets.csv")
 degree_table <- read.csv("/path/to/string_node_degree.csv")
 disease_name <- "Lung cancer"
 formula_name <- "SJZT"
-output_files <- total_network_plot(kegg_data, metabolites_list, degree_table, disease, formula)
+output_dir <-"/path/ppi/total_network_pathway"
+output_files <- total_network_plot(kegg_data, metabolites_list, degree_table, disease, formula,output_dir)
 print(output_files)
 }
 \keyword{KEGG,}

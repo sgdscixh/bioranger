@@ -21,14 +21,15 @@
 #' @keywords 网络, 绘图, KEGG, 代谢物, 度
 #' @importFrom utils read.csv
 #' @export
-total_network_plot <- function(kegg_data, metabolites_list, degree_table, disease, formula) {
+total_network_plot <- function(kegg_data, metabolites_list, degree_table, disease, formula, output_dir) {
     biorange <- import_biorange()
     biorange$ppi$total_network_plot(
         kegg_data = kegg_res,
         metabolites_list = metabolites_list,
         degree_table = degree_table,
         disease = disease_name,
-        formula = formula_name
+        formula = formula_name,
+        output_dir = output_dir
     )
 
 
