@@ -122,3 +122,10 @@ create_venn_diagram(list(TCMSP, Chembl, STITCH), c("TCMSP", "Chembl", "STITCH"),
 
 
 format_table("/home/liuyan/projects/package/biorang_bak/表格路径.yaml", "/home/liuyan/projects/package/biorang_bak/中药入血注释.yaml")
+
+
+input_file_path <- read.csv("/home/liuyan/projects/package/biorange/biorange/data/first_input_data.csv")
+# compound_df <- data.frame(NameEN = c("beta-Alanine", "Pyrocatechol", "2,3-Dihydroxybenzoic acid (Pyrocatechuic acid)", "Glycine", "Hydroquinone", "Lysine", "Poncirin", "Vanillin", "Xanthine"), inchikey = c("UCMIRNVEIXFBKS-UHFFFAOYSA-N", "YCIMNLLNPGFGHC-UHFFFAOYSA-N", "GLDQAMYCGOIJDV-UHFFFAOYSA-N", "DHMQDGOQFOQNFH-UHFFFAOYSA-N", "QIGBRXMKCJKVMJ-UHFFFAOYSA-N", "KDXKERNSBIXSRK-YFKPBYRVSA-N", "NLAWPKPYBMEWIR-YZOWQMJMSA-N", "MWOOGOJBHIARFG-UHFFFAOYSA-N", "LRFVTYWOQMYALW-UHFFFAOYSA-N"))
+
+result <- admet_filter(input_file_path, lipinski_threshold = 4, qed_threshold = 0.5, bioavailability_threshold = 0.3)
+write.csv(result, "./nihao.csv")
