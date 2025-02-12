@@ -63,8 +63,8 @@ devtools::build(pkg = ".", binary = FALSE, manual = FALSE, vignettes = FALSE)
 reticulate::py_config() # 查看使用的是什么虚拟环境
 
 # 3.手动安装python包，记得使用ignore_installed = TRUE才会强制升级，相当于pip install xxx --upgrade
-reticulate::py_install("/home/liuyan/projects/package/biorang_bak/dist/biorange-1.4.3-py3-none-any.whl", ignore_installed = TRUE)
-# 手动安装 pip install "/home/liuyan/projects/package/biorang_bak/dist/biorange-1.4.3.2-py3-none-any.whl"
+reticulate::py_install("/home/liuyan/projects/package/biorang_bak/dist/biorange-1.4.3.3-py3-none-any.whl", ignore_installed = TRUE)
+# 手动安装 pip install "/home/liuyan/projects/package/biorang_bak/dist/biorange-1.4.3.3-py3-none-any.whl"
 # z这里
 reticulate::use_condaenv("r-baby", required = TRUE)
 
@@ -76,14 +76,13 @@ reticulate::import("biorange")
 package <- import("biorange") # 替换为你要检查的包名
 
 # 获取并打印版本号
-version <- package$`__version__`
-print(version)
+import_biorange()
 
 
 # 更新R包及上传到github
 # 1. 更新后将改动或新增文件提交到git，控制版本
 # 2. 如有新增R函数模块，需运行devtools::document()新增对应说明书
 # 3. 运行 devtools::build() 构建R包
-# 4. 运行 export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890 更改代理
+# 4. 运行  export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890更改代理
 # 5. 运行git push 将包上传到git hub
 #

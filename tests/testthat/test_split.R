@@ -114,11 +114,21 @@ target_num <- type_counts["target"]
 compound_num <- type_counts["compound"]
 target_num
 
-TCMSP <- c("A", "B", "C", "D", "D", "D")
-Chembl <- c("B", "C", "E", "F")
-STITCH <- c("C", "D", "E", "G")
+# TCMSP <- c("A", "B", "C", "D", "D", "D")
+# Chembl <- c("B", "C", "E", "F")
+# STITCH <- c("C", "D", "E", "G")
+install.packages("readxl")
+library(readxl)
+m <- read_excel("/home/liuyan/projects/package/biorang_bak/genecards.xlsx")
+n <- read_excel("/home/liuyan/projects/package/biorang_bak/ttd.xlsx")
+k <- read_excel("/home/liuyan/projects/package/biorang_bak/omim.xlsx")
+# 提取 gene_name 列并转换为向量
+TCMSP <- as.character(m$gene_name)
+Chembl <- as.character(n$gene_name)
+STITCH <- as.character(k$gene_name)
 
-create_venn_diagram(list(TCMSP, Chembl, STITCH), c("TCMSP", "Chembl", "STITCH"), "Ingredients_Targets_venn", "Ingredients_Targets_venn.png", output_dir = "./results/custom/venn")
+
+create_venn_diagram(list(TCMSP, Chembl, STITCH), c("TCMSP", "Chembl", "STITCH"), "Ingredients_Targets_venn", "Ingredients_Targets_venn.png", output_dir = "./results/custom/venn", min_size = 200, max_size = 1000, intersection_scale_factor = 1, center_distance_factor = 0.5)
 
 
 format_table("/home/liuyan/projects/package/biorang_bak/表格路径.yaml", "/home/liuyan/projects/package/biorang_bak/中药入血注释.yaml")
