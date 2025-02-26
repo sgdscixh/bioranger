@@ -128,7 +128,7 @@ Chembl <- as.character(n$gene_name)
 STITCH <- as.character(k$gene_name)
 
 
-create_venn_diagram(list(TCMSP, Chembl, STITCH), c("TCMSP", "Chembl", "STITCH"), "Ingredients_Targets_venn", "Ingredients_Targets_venn.png", output_dir = "./results/custom/venn", min_size = 200, max_size = 1000, intersection_scale_factor = 1, center_distance_factor = 0.5)
+create_venn_diagram(list(TCMSP, Chembl, STITCH), c("TCMSP", "Chembl", "STITCH"), "Ingredients_Targets_venn", "Ingredients_Targets_venn", output_dir = "./results/custom/venn", min_size = 200, max_size = 1000, intersection_scale_factor = 1, center_distance_factor = 0.5)
 
 
 format_table("/home/liuyan/projects/package/biorang_bak/表格路径.yaml", "/home/liuyan/projects/package/biorang_bak/中药入血注释.yaml")
@@ -139,3 +139,9 @@ input_file_path <- read.csv("/home/liuyan/projects/package/biorange/biorange/dat
 
 result <- admet_filter(input_file_path, lipinski_threshold = 4, qed_threshold = 0.5, bioavailability_threshold = 0.3)
 write.csv(result, "./nihao.csv")
+
+
+
+html_to_png_onestep("/home/liuyan/projects/package/bioranger/3d_autodock.html", "/home/liuyan/projects/package/bioranger/3d_autodock.png")
+
+html_to_png_twostep("/home/liuyan/projects/package/bioranger/3d_autodock.html", "/home/liuyan/projects/package/bioranger/3d_autodock.png")

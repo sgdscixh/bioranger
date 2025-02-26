@@ -24,6 +24,8 @@ usethis::use_r(name = "network_circular_plot")
 usethis::use_r(name = "generate_compound_sequence")
 usethis::use_r(name = "generate_target_sequence")
 usethis::use_r(name = "table_format")
+usethis::use_r(name = "html_png_onestep")
+usethis::use_r(name = "html_png_twostep")
 
 
 devtools::document() # 新增说明书
