@@ -2,30 +2,36 @@
 % Please edit documentation in R/html_png_twostep.R
 \name{html_to_png_twostep}
 \alias{html_to_png_twostep}
-\title{将HTML文件转换为PNG图像}
+\title{将 HTML 文件转换为 PNG 图像}
 \usage{
-html_to_png_twostep(file_path, output_path)
+html_to_png_twostep(file_path, output_path, wait_time = 15, is_remote = FALSE)
 }
 \arguments{
-\item{file_path}{需要转换的HTML文件路径}
+\item{file_path}{需要转换的 HTML 文件路径。}
 
-\item{output_path}{转换后的PNG文件输出路径}
+\item{output_path}{转换后的 PNG 文件输出路径。}
+
+\item{wait_time}{页面等待时间，默认为 15。}
+
+\item{is_remote}{是否远程，默认为 FALSE。}
 }
 \value{
-无返回值，直接生成PNG文件
+无返回值，直接生成 PNG 文件。
 }
 \description{
-此函数使用biorange模块中的html_png_onestep函数将HTML文件转换为PNG格式。
+此函数使用 biorange 模块中的 html_png_twostep 函数将 HTML 文件转换为 PNG 格式。
 }
 \details{
-该函数调用biorange模块中的html_png_onestep函数，
+该函数调用 biorange 模块中的 html_png_twostep 函数，
 使用提供的文件路径和输出路径进行转换。
 }
 \examples{
 \dontrun{
 html_to_png_twostep(
-    "/home/liuyan/projects/package/biorang_bak/2d_autodock.html",
-    "/home/liuyan/projects/package/biorang_bak/999doutput.png"
+    "/home/liuyan/projects/package/biorang_bak/3d_autodock.html",
+    "/home/liuyan/projects/package/biorang_bak/88dd.png",
+    wait_time = 15,
+    is_remote = FALSE
 )
 }
 }

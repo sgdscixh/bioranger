@@ -142,6 +142,6 @@ write.csv(result, "./nihao.csv")
 
 
 
-html_to_png_onestep("/home/liuyan/projects/package/bioranger/3d_autodock.html", "/home/liuyan/projects/package/bioranger/3d_autodock.png")
+html_to_png_onestep("/home/liuyan/projects/package/bioranger/3d_autodock.html", "/home/liuyan/projects/package/bioranger/3d_autodock.png", wait_time = 15, is_remote = FALSE)
 
-html_to_png_twostep("/home/liuyan/projects/package/bioranger/3d_autodock.html", "/home/liuyan/projects/package/bioranger/3d_autodock.png")
+html_to_png_twostep("/home/liuyan/projects/package/bioranger/3d_autodock.html", "/home/liuyan/projects/package/bioranger/3ddd_autodock.png", wait_time = 15, is_remote = FALSE)
