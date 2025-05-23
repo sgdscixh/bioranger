@@ -26,6 +26,15 @@ usethis::use_r(name = "generate_target_sequence")
 usethis::use_r(name = "table_format")
 usethis::use_r(name = "html_png_onestep")
 usethis::use_r(name = "html_png_twostep")
+usethis::use_r(name = "run_nextflow")
+usethis::use_r(name = "utils_runnextflow")
+usethis::use_r(name = "setup_env")
+usethis::use_r(name = "ppi_basic_analysis")
+usethis::use_r(name = "ppi_core_targets")
+usethis::use_r(name = "generate_node_type_sequence")
+usethis::use_r(name = "pathway_network_plot")
+
+
 
 
 devtools::document() # 新增说明书
@@ -65,8 +74,8 @@ devtools::build(pkg = ".", binary = FALSE, manual = FALSE, vignettes = FALSE)
 reticulate::py_config() # 查看使用的是什么虚拟环境
 
 # 3.手动安装python包，记得使用ignore_installed = TRUE才会强制升级，相当于pip install xxx --upgrade
-reticulate::py_install("/home/liuyan/projects/package/biorang_bak/dist/biorange-1.4.3.3-py3-none-any.whl", ignore_installed = TRUE)
-# 手动安装 pip install "/home/liuyan/projects/package/biorang_bak/dist/biorange-1.4.3.3-py3-none-any.whl"
+reticulate::py_install("/home/liuyan/projects/package/biorang_bak/dist/biorange-1.4.3.8-py3-none-any.whl", ignore_installed = TRUE)
+# 手动安装 pip install "/home/liuyan/projects/package/biorang_bak/dist/biorange-1.4.3.8-py3-none-any.whl"
 # z这里
 reticulate::use_condaenv("r-baby", required = TRUE)
 
