@@ -145,3 +145,88 @@ write.csv(result, "./nihao.csv")
 html_to_png_onestep("/home/liuyan/projects/package/bioranger/3d_autodock.html", "/home/liuyan/projects/package/bioranger/3d_autodock.png", wait_time = 15, is_remote = FALSE)
 
 html_to_png_twostep("/home/liuyan/projects/package/bioranger/3d_autodock.html", "/home/liuyan/projects/package/bioranger/3ddd_autodock.png", wait_time = 15, is_remote = FALSE)
+
+
+# ppi_basic_analysis
+gene_names_file <- ("/home/liuyan/projects/package/biorang_bak/Metabolites_disease_venn_2.xlsx")
+gene_names <- read_excel(gene_names_file)[["Metabolites&disease"]]
+ppi_output_dir <- "/home/liuyan/projects/package/bioranger/results/ppi1"
+ppi_basic <- ppi_basic_analysis(gene_names, ppi_output_dir)
+
+#
+nodes <- ppi_basic$nodes
+degree_df <- ppi_basic$degree_df
+print(degree_df)
+
+degree_target_num <- nrow(degree_df)
+print(degree_target_num)
+
+
+# 绘制degree核心图
+# First get the target count
+# target_top_nodes <- function(target_count) {
+#   # Determine top_nodes based on target_count using conditions
+#   if (target_count >= 100) {
+#     top_nodes <- 100
+#     }
+#   else if (target_count >= 50) {
+#     top_nodes <- 50
+#     }
+#   else if (target_count >= 30) {
+#     top_nodes <- 30
+#   }
+#   else if (target_count >= 20) {
+#     top_nodes <- 20
+#   }
+#   else {  # when target_count < 20
+#     top_nodes <- 10
+#   }
+#   return(top_nodes)
+# }
+
+
+# kegg_top_nodes <- target_top_nodes(45)
+nodes <- ppi_basic$nodes
+degree_df <- ppi_basic$degree_df
+kegg_top_nodes <- as.integer(30) # 注意数据形式
+
+core_output_dir <- "./results/output/pp6"
+# Now use this top_nodes value in generate_core_targets
+results <- ppi_core_targets(nodes = nodes, degree_df = degree_df, output_dir = ppi_output_dir, file_name = "PPI_network_degree_top30", top_nodes = kegg_top_nodes)
+
+
+
+# 生成kegg的通路节点和类型文件以及sequence
+kegg_df <- read_excel("/home/liuyan/projects/package/biorang_bak/kegg_res_2.xlsx") |> head(10)
+targets_total_df <- read_excel("/home/liuyan/projects/package/biorang_bak/metabolite_total_targets_2.xlsx")
+
+kegg_node_type_file <- generate_node_type_sequence(kegg_df, targets_total_df, nodes, degree_df, target_top_n = 50L, compound_top_n = 10L)
+
+
+# node_relationships_df, node_types_df, node_counts, target_sequence
+kegg_node_file <- kegg_node_type_file[[1]]
+
+kegg_node_file <- kegg_node_type_file[["node_file"]]
+kegg_type_file <- kegg_node_type_file[["type_file"]]
+kegg_node_counts <- kegg_node_type_file[["target_compound_counts"]]
+kegg_target_sequence <- kegg_node_type_file[["target_sequence"]]
+
+
+# kegg_node_type_file.to_csv("./results/output/pp6/kegg_node_file33.csv", index = False)
+# kegg_type_file.to_csv("./results/output/pp6/kegg_type_file33.csv", index = False)
+
+
+
+
+# 为每种样式创建可视化
+pathway_network_plot(nodes_df = kegg_node_file, types_df = kegg_type_file, compound_layers = as.list(kegg_node_counts[[2]]), target_layers = kegg_target_sequence, output_file = "kegg_pathway_network", output_dir = ppi_output_dir, style_preset = "STYLE1")
+
+
+pathway_limit <- 10L
+gene_limit <- 30L
+compound_limit <- 20L
+total_network_plot(kegg_data = kegg_df, metabolites_list = targets_total_df, degree_table = degree_df, disease = "sjb", formula = "SQDB", pathway_limit = 10L, gene_limit = 30L, compound_limit = 20L, output_dir = ppi_output_dir)
+
+# Print the Python types of the parameters
+print(kegg_df)
+print(targets_total_df)

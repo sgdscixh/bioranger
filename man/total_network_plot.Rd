@@ -32,7 +32,7 @@ metabolites_list <- read.csv("/path/to/metabolite_targets.csv")
 degree_table <- read.csv("/path/to/string_node_degree.csv")
 disease_name <- "Lung cancer"
 formula_name <- "SJZT"
-output_files <- total_network_plot(kegg_data, metabolites_list, degree_table, disease, formula)
+output_files <- total_network_plot(kegg_data, metabolites_list, degree_table, disease, formula, pathway_limit = 15, gene_limit = 30, compound_limit = 20, output_dir)
 print(output_files)
 }
 \keyword{KEGG,}

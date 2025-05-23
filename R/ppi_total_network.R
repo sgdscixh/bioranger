@@ -15,27 +15,23 @@
 #' degree_table <- read.csv("/path/to/string_node_degree.csv")
 #' disease_name <- "Lung cancer"
 #' formula_name <- "SJZT"
-#' output_files <- total_network_plot(kegg_data, metabolites_list, degree_table, disease, formula)
+#' output_files <- total_network_plot(kegg_data, metabolites_list, degree_table, disease, formula, pathway_limit = 15, gene_limit = 30, compound_limit = 20, output_dir)
 #' print(output_files)
 #' @details 该函数处理输入数据以生成综合网络图，帮助可视化交互关系。
 #' @keywords 网络, 绘图, KEGG, 代谢物, 度
 #' @importFrom utils read.csv
 #' @export
-total_network_plot <- function(kegg_data, metabolites_list, degree_table, disease, formula, output_dir) {
+total_network_plot <- function(kegg_data, metabolites_list, degree_table, disease_name, formula_name, pathway_limit = 15L, gene_limit = 30L, compound_limit = 20L, output_dir) {
     biorange <- import_biorange()
     biorange$ppi$total_network_plot(
-        kegg_data = kegg_res,
+        kegg_data = kegg_data,
         metabolites_list = metabolites_list,
         degree_table = degree_table,
         disease = disease_name,
         formula = formula_name,
+        pathway_limit = pathway_limit, # 可选参数
+        gene_limit = gene_limit, # 可选参数
+        compound_limit = compound_limit, # 可选参数
         output_dir = output_dir
     )
-
-
-
-
-    # 假设这里是函数的实现
-    # 该函数处理数据并生成网络图
-    # 返回输出文件列表
 }
