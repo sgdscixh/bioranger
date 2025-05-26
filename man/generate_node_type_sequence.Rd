@@ -5,26 +5,26 @@
 \title{generate_node_type_sequence}
 \usage{
 generate_node_type_sequence(
-  kegg_df,
+  pathway_df,
   targets_total_df,
-  nodes,
+  nodes_df,
   degree_df,
   target_top_n = 50L,
   compound_top_n = 10L
 )
 }
 \arguments{
-\item{kegg_df}{Data frame. KEGG pathway data (already loaded).}
-
 \item{targets_total_df}{Data frame. Metabolite targets data (already loaded).}
 
-\item{nodes}{Data frame. PPI network nodes data.}
+\item{nodes_df}{Data frame. PPI network nodes data.}
 
 \item{degree_df}{Data frame. Node degree information.}
 
 \item{target_top_n}{Numeric. Number of top targets to select. Default is 50.}
 
 \item{compound_top_n}{Numeric. Number of top compounds to select. Default is 10.}
+
+\item{kegg_df}{Data frame. KEGG pathway data (already loaded).}
 }
 \value{
 A list containing:
@@ -54,7 +54,7 @@ targets_data <- readxl::read_excel("/path/to/metabolite_total_targets_2.xlsx")
 results <-generate_node_type_sequence(
     kegg_df = kegg_data,
     targets_total_df = targets_data,
-    nodes = ppi_network$nodes,
+    nodes_df = ppi_network$nodes,
     degree_df = ppi_network$degree_df
     target_top_n = 50L,
     compound_top_n = 10L

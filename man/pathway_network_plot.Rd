@@ -5,20 +5,17 @@
 \title{pathway_network_plot}
 \usage{
 pathway_network_plot(
-  nodes_df,
-  types_df,
+  nodes_file,
+  types_file,
   compound_layers,
   target_layers,
   output_file,
   output_dir,
-  style_preset = "STYLE1"
+  style_preset = "STYLE1",
+  figsize = c(10, 10)
 )
 }
 \arguments{
-\item{nodes_df}{Data frame. Preprocessed node data (must contain required columns).}
-
-\item{types_df}{Data frame. Preprocessed type annotation data.}
-
 \item{compound_layers}{List. Compound layer data (numeric vectors).}
 
 \item{target_layers}{List. Target sequence data.}
@@ -29,6 +26,10 @@ pathway_network_plot(
 
 \item{style_preset}{Character. Visualization style ("STYLE1", "STYLE2", etc.).
 Default: "STYLE1".}
+
+\item{nodes_df}{Data frame. Preprocessed node data (must contain required columns).}
+
+\item{types_df}{Data frame. Preprocessed type annotation data.}
 }
 \value{
 Invisibly returns NULL. Primary output is generated files in \code{output_dir}.
@@ -52,7 +53,8 @@ pathway_network_plot(
     target_layers = my_targets,
     output_file = "network_plot",
     output_dir = "./results/network",
-    style_preset = "STYLE2"
+    style_preset = "STYLE2",
+    figsize= (10,10)
 )
 }
 
