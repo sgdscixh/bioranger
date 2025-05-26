@@ -26,28 +26,31 @@
 #'     target_layers = my_targets,
 #'     output_file = "network_plot",
 #'     output_dir = "./results/network",
-#'     style_preset = "STYLE2"
+#'     style_preset = "STYLE2",
+#'     figsize= (10,10)
 #' )
 #' }
 #'
 #' @export
-pathway_network_plot <- function(nodes_df,
-                                 types_df,
+pathway_network_plot <- function(nodes_file,
+                                 types_file,
                                  compound_layers,
                                  target_layers,
                                  output_file,
                                  output_dir,
-                                 style_preset = "STYLE1") {
+                                 style_preset = "STYLE1",
+                                 figsize = c(10,10)) {
     biorange <- import_biorange()
     # Python function call
     biorange$ppi$create_network_visualization(
-        nodes_df = nodes_df,
-        types_df = types_df,
+        nodes_file = nodes_file,
+        types_file = types_file,
         compound_layers = compound_layers,
         target_layers = target_layers,
         output_file = output_file,
         output_dir = output_dir,
-        style_preset = biorange$ppi$StylePresets[[style_preset]]
+        style_preset = biorange$ppi$StylePresets[[style_preset]],
+        figsize = figsize
     )
 
     invisible(NULL)

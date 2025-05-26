@@ -127,9 +127,13 @@ TCMSP <- as.character(m$gene_name)
 Chembl <- as.character(n$gene_name)
 STITCH <- as.character(k$gene_name)
 
+TCMSP <- c("A", "B", "C", "D", "D", "D")
+Chembl <- c("B", "C", "E", "F")
+STITCH <- c("F", "D", "E", "G")
 
-create_venn_diagram(list(TCMSP, Chembl, STITCH), c("TCMSP", "Chembl", "STITCH"), "Ingredients_Targets_venn", "Ingredients_Targets_venn", output_dir = "./results/custom/venn", min_size = 200, max_size = 1000, intersection_scale_factor = 1, center_distance_factor = 0.5)
 
+venn_results <- create_venn_diagram(list(TCMSP, Chembl, STITCH), c("TCMSP", "Chembl", "STITCH"), "Ingredients_Targets_venn", "Ingredients_Targets_venn", output_dir = "./results/custom/venn", min_size = 200, max_size = 1000, intersection_scale_factor = 1, center_distance_factor = 0.5)
+print(venn_results)
 
 format_table("/home/liuyan/projects/package/biorang_bak/表格路径.yaml", "/home/liuyan/projects/package/biorang_bak/中药入血注释.yaml")
 
@@ -154,7 +158,7 @@ ppi_output_dir <- "/home/liuyan/projects/package/bioranger/results/ppi1"
 ppi_basic <- ppi_basic_analysis(gene_names, ppi_output_dir)
 
 #
-nodes <- ppi_basic$nodes
+nodes_df <- ppi_basic$nodes
 degree_df <- ppi_basic$degree_df
 print(degree_df)
 
@@ -200,7 +204,7 @@ results <- ppi_core_targets(nodes = nodes, degree_df = degree_df, output_dir = p
 kegg_df <- read_excel("/home/liuyan/projects/package/biorang_bak/kegg_res_2.xlsx") |> head(10)
 targets_total_df <- read_excel("/home/liuyan/projects/package/biorang_bak/metabolite_total_targets_2.xlsx")
 
-kegg_node_type_file <- generate_node_type_sequence(kegg_df, targets_total_df, nodes, degree_df, target_top_n = 50L, compound_top_n = 10L)
+kegg_node_type_file <- generate_node_type_sequence(pathway_df = kegg_df, targets_total_df = targets_total_df, nodes_df = nodes, degree_df = degree_df, target_top_n = 50L, compound_top_n = 10L)
 
 
 # node_relationships_df, node_types_df, node_counts, target_sequence
@@ -210,22 +214,24 @@ kegg_node_file <- kegg_node_type_file[["node_file"]]
 kegg_type_file <- kegg_node_type_file[["type_file"]]
 kegg_node_counts <- kegg_node_type_file[["target_compound_counts"]]
 kegg_target_sequence <- kegg_node_type_file[["target_sequence"]]
+compound_id <- kegg_node_type_file[["compound_id"]]
 
 
-# kegg_node_type_file.to_csv("./results/output/pp6/kegg_node_file33.csv", index = False)
-# kegg_type_file.to_csv("./results/output/pp6/kegg_type_file33.csv", index = False)
 
+write.csv(kegg_node_counts, file = "/home/liuyan/projects/package/bioranger/results/ppi1/kegg_node_counts33.csv", row.names = FALSE)
+write.csv(kegg_target_sequence, file = "/home/liuyan/projects/package/bioranger/results/ppi1/kegg_target_sequence33.csv", row.names = FALSE)
+write.csv(compound_id, file = "/home/liuyan/projects/package/bioranger/results/ppi1/compound_id33.csv", row.names = FALSE)
 
 
 
 # 为每种样式创建可视化
-pathway_network_plot(nodes_df = kegg_node_file, types_df = kegg_type_file, compound_layers = as.list(kegg_node_counts[[2]]), target_layers = kegg_target_sequence, output_file = "kegg_pathway_network", output_dir = ppi_output_dir, style_preset = "STYLE1")
+pathway_network_plot(nodes_file = kegg_node_file, types_file = kegg_type_file, compound_layers = as.list(kegg_node_counts[[2]]), target_layers = kegg_target_sequence, output_file = "kegg_pathway_network", output_dir = ppi_output_dir, style_preset = "STYLE1")
 
 
 pathway_limit <- 10L
 gene_limit <- 30L
 compound_limit <- 20L
-total_network_plot(kegg_data = kegg_df, metabolites_list = targets_total_df, degree_table = degree_df, disease = "sjb", formula = "SQDB", pathway_limit = 10L, gene_limit = 30L, compound_limit = 20L, output_dir = ppi_output_dir)
+total_network_plot(pathway_data = kegg_df, metabolites_list = targets_total_df, degree_table = degree_df, disease = "sjb", formula = "SQDB", pathway_limit = 10L, gene_limit = 30L, compound_limit = 20L, output_dir = ppi_output_dir)
 
 # Print the Python types of the parameters
 print(kegg_df)

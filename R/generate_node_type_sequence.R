@@ -40,18 +40,18 @@
 #' }
 #'
 #' @export
-generate_node_type_sequence <- function(kegg_df,
+generate_node_type_sequence <- function(pathway_df,
                                         targets_total_df,
-                                        nodes,
+                                        nodes_df,
                                         degree_df,
                                         target_top_n = 50L,
                                         compound_top_n = 10L) {
     biorange <- import_biorange()
     # 生成节点和类型文件
     result_list <- biorange$ppi$generate_node_type_sequence(
-        kegg_df = kegg_df,
+        pathway_df = pathway_df,
         targets_total_df = targets_total_df,
-        nodes = nodes,
+        nodes_df= nodes,
         degree_df = degree_df,
         target_top_n = target_top_n,
         compound_top_n = compound_top_n
@@ -62,6 +62,8 @@ generate_node_type_sequence <- function(kegg_df,
         node_file = result_list[[1]],
         type_file = result_list[[2]],
         target_compound_counts = result_list[[3]],
-        target_sequence = result_list[[4]]
+        target_sequence = result_list[[4]],
+        compound_id = result_list[[5]]
+
     )
 }
