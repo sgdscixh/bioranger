@@ -51,7 +51,7 @@ generate_node_type_sequence <- function(pathway_df,
     result_list <- biorange$ppi$generate_node_type_sequence(
         pathway_df = pathway_df,
         targets_total_df = targets_total_df,
-        nodes_df= nodes,
+        nodes_df= nodes_df,
         degree_df = degree_df,
         target_top_n = target_top_n,
         compound_top_n = compound_top_n
