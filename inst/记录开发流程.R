@@ -35,8 +35,6 @@ usethis::use_r(name = "generate_node_type_sequence")
 usethis::use_r(name = "pathway_network_plot")
 
 
-
-
 devtools::document() # 新增说明书
 devtools::load_all() # 加载所有函数进来，用作测试。
 cusethis::use_vignette("networkpharam-analysis-use-R")
@@ -60,13 +58,14 @@ devtools::build_vignettes()
 pkgdown::build_site(lazy = TRUE)
 
 # 打包R包
-devtools::build(pkg = ".", binary = FALSE, manual = FALSE, vignettes = FALSE)
+devtools::build(pkg = ".", binary = FALSE, manual = FALSE, vignettes = FALSE)#默认放父目录
+devtools::build(pkg = ".", path = "./dist", binary = FALSE, manual = FALSE, vignettes = FALSE)#放在当前项目路径下的dist目录
 
 # 使用R安装python包，到R交互的python虚拟环境
 
 # 注意vscode自动打开的 R terminal 是radian，他是用python模拟R终端，再在里面用R模拟python的话 就套娃了，不被允许会报堆栈错误
-# 我设置的默认自动打开radian，按ctrl + enter 运行R会自动打开radian
-# 所以需要用Rstudio打开R终端，或者直接命令行输出R打开丑八怪的R终端
+# 设置的默认自动打开radian，按ctrl + enter 运行R会自动打开radian
+
 
 # 1.强制指定虚拟环境，参考之前的教程
 
@@ -74,9 +73,9 @@ devtools::build(pkg = ".", binary = FALSE, manual = FALSE, vignettes = FALSE)
 reticulate::py_config() # 查看使用的是什么虚拟环境
 
 # 3.手动安装python包，记得使用ignore_installed = TRUE才会强制升级，相当于pip install xxx --upgrade
-reticulate::py_install("/home/liuyan/projects/package/biorang_bak/dist/biorange-1.4.3.8-py3-none-any.whl", ignore_installed = TRUE)
+reticulate::py_install("/home/liuyan/projects/package/biorang_bak/dist/biorange-1.4.3.9-py3-none-any.whl", ignore_installed = TRUE)
 # 手动安装 pip install "/home/liuyan/projects/package/biorang_bak/dist/biorange-1.4.3.8-py3-none-any.whl"
-# z这里
+#
 reticulate::use_condaenv("r-baby", required = TRUE)
 
 reticulate::py_config()

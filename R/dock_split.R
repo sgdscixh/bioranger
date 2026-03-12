@@ -21,6 +21,5 @@ dock_split_sdf <- function(ligand_path) {
 }
 
 # 调用示例
-# dock_split_sdf("results/dock/ligand1_docked__d49efd3e-6a2e-4a4f-aeac-1b7818c479eb") 没问题了宝宝 就是这里记住别写业务逻辑 永远注释 在test 下面写测试
+# dock_split_sdf("results/dock/ligand1_docked__d49efd3e-6a2e-4a4f-aeac-1b7818c479eb") 
 # result <- dock_split_sdf("results/dock/ligand1_docked__d49efd3e-6a2e-4a4f-aeac-1b7818c479eb","results/dock/")
-# 额 你咋看 不知道发生了啥好像是我的问题咋整的我没有reticulata 但是我也没有 在radian中是自动的我就是在燃点里 对的 但是现在是好的。。我就load all 然后就运行 代码了我也是年你看有个区别，我的运行了没有图标第一次才会有哦哦
