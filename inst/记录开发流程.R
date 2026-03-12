@@ -58,8 +58,7 @@ devtools::build_vignettes()
 pkgdown::build_site(lazy = TRUE)
 
 # 打包R包
-devtools::build(pkg = ".", binary = FALSE, manual = FALSE, vignettes = FALSE)#默认放父目录
-devtools::build(pkg = ".", path = "./dist", binary = FALSE, manual = FALSE, vignettes = FALSE)#放在当前项目路径下的dist目录
+devtools::build(pkg = ".", path = "./dist", binary = FALSE, manual = FALSE, vignettes = FALSE) # 放在当前项目路径下的dist目录
 
 # 使用R安装python包，到R交互的python虚拟环境
 
@@ -74,7 +73,7 @@ reticulate::py_config() # 查看使用的是什么虚拟环境
 
 # 3.手动安装python包，记得使用ignore_installed = TRUE才会强制升级，相当于pip install xxx --upgrade
 reticulate::py_install("/home/liuyan/projects/package/biorang_bak/dist/biorange-1.4.3.9-py3-none-any.whl", ignore_installed = TRUE)
-# 手动安装 pip install "/home/liuyan/projects/package/biorang_bak/dist/biorange-1.4.3.8-py3-none-any.whl"
+# 手动安装 pip install "/home/liuyan/projects/package/biorang_bak/dist/biorange-1.4.3.9-py3-none-any.whl"
 #
 reticulate::use_condaenv("r-baby", required = TRUE)
 
